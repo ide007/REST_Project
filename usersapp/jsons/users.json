@@ -1,0 +1,25 @@
+[
+    {
+        "password": "123",
+        "user_name": "vanya",
+        "first_name": "Ivan",
+        "last_name": "Ivanov",
+        "email": "ivanov@email.com"
+    },
+    {
+        "password": "321",
+        "user_name": "vasya",
+        "first_name": "Vasiliy",
+        "last_name": "Vasilev",
+        "email": "vasilev@email.com"
+    },
+    {
+        "password": "123",
+        "is_superuser": true,
+        "is_staff": true,
+        "user_name": "admin",
+        "first_name": "admin",
+        "last_name": "ADM",
+        "email": "admin@email.com"
+    }
+]
