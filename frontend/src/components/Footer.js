@@ -5,13 +5,13 @@ function Footer () {
         <section>
             <hr />
             <section>
-                <a href="#" target="_blank"> Links </a>
+                <a href="#" target="_blank"> Ссылки </a>
             </section>
             <section>
-                phone: +77777777777
+                Тел: +77777777777
             </section>
             <section>
-                email: mail@email.com
+                Почта: mail@email.com
             </section>
             <section>
                 &copy; Yusupov 2021

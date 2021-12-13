@@ -11,7 +11,7 @@ function Header () {
                         <li>
                             <form>
                                 <input type="string" />
-                                <button>Search</button>
+                                <button> Поиск </button>
                             </form>
                         </li>
                     </ul>
