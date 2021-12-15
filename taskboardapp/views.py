@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from rest_framework.renderers import JSONRenderer
 from rest_framework.viewsets import ModelViewSet
 from taskboardapp.models import WorkProject, TaskBoard
 from taskboardapp.serializers import WorkProjectSerializer, TaskBoardSerializer

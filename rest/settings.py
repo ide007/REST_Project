@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'usersapp',
+    'taskboardapp'
 ]
 
 AUTH_USER_MODEL = 'usersapp.User'
-import corsheaders
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +136,10 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}

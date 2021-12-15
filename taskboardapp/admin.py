@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import WorkProject, TaskBoard
 
-# Register your models here.
+admin.site.register(WorkProject)
+admin.site.register(TaskBoard)
