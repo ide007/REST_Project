@@ -1,5 +1,5 @@
-from rest_framework.serializers import ModelSerializer
-from usersapp.serializers import UserSerializer
+from rest_framework.serializers import ModelSerializer, StringRelatedField
+# from usersapp.serializers import UserSerializer
 from .models import WorkProject, TaskBoard
 
 
@@ -10,7 +10,7 @@ class WorkProjectSerializer(ModelSerializer):
 
 
 class TaskBoardSerializer(ModelSerializer):
-    user = UserSerializer()
+    user = StringRelatedField()
 
     class Meta:
         model = TaskBoard
