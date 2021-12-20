@@ -1,8 +1,14 @@
-asgiref==3.4.1
-Django==3.2.10
-djangorestframework==3.12.4
-pip==21.3.1
-pytz==2021.3
-setuptools==59.5.0
-sqlparse==0.4.2
-wheel==0.37.0
+Package             Version
+------------------- -------
+asgiref             3.4.1
+Django              3.2.10
+django-cors-headers 3.10.1
+django-filter       21.1
+djangorestframework 3.12.4
+null                0.6.1
+pip                 21.3.1
+pytz                2021.3
+setuptools          59.5.0
+six                 1.16.0
+sqlparse            0.4.2
+wheel               0.37.0

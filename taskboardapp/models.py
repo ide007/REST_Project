@@ -21,6 +21,7 @@ class TaskBoard(models.Model):
     task_status = models.BooleanField(default=True)
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Задача'

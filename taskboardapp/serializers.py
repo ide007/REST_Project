@@ -1,5 +1,4 @@
-from rest_framework.serializers import ModelSerializer, StringRelatedField
-# from usersapp.serializers import UserSerializer
+from rest_framework.serializers import ModelSerializer
 from .models import WorkProject, TaskBoard
 
 
@@ -10,9 +9,9 @@ class WorkProjectSerializer(ModelSerializer):
 
 
 class TaskBoardSerializer(ModelSerializer):
-    user = StringRelatedField()
 
     class Meta:
         model = TaskBoard
-        # fields = ['task_title', 'task_status', 'project', 'creator', 'created_time', 'user_creator']
-        fields = '__all__'
+        fields = ['id', 'task_title', 'task_status', 'project', 'creator',
+                  'created_time', 'is_deleted']
+        # fields = '__all__'
