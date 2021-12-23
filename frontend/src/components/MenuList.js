@@ -6,8 +6,12 @@ function Header () {
             <header>
                 <nav>
                     <ul>
-                        <li>Главная</li>
-                        <li>Контент</li>
+                        <section>
+                            <a href="#" target="_blank"> Ссылки </a>
+                        </section>
+                        <section>
+                            <a href="#" target="_blank"> Ссылки </a>
+                        </section>
                         <li>
                             <form>
                                 <input type="string" />
