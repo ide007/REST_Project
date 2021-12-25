@@ -1,26 +1,26 @@
 import React from 'react'
+import {BrowserRouter, Link} from 'react-router-dom'
 
 function Header () {
     return(
         <section>
             <header>
-                <nav>
-                    <ul>
-                        <section>
-                            <a href="#" target="_blank"> Ссылки </a>
-                        </section>
-                        <section>
-                            <a href="#" target="_blank"> Ссылки </a>
-                        </section>
-                        <li>
-                            <form>
-                                <input type="string" />
-                                <button> Поиск </button>
-                            </form>
-                        </li>
-                    </ul>
-                    <hr/>
-                </nav>
+                <BrowserRouter>
+                    <nav>
+                        <ul>
+                            <li><Link to='/users'> Участники </Link></li>
+                            <li><Link to='/'> Проекты </Link></li>
+                            <li><Link to='/taskboard'> Задачи </Link></li>
+                            <li>
+                                <form>
+                                    <input type="string" />
+                                    <button> Поиск </button>
+                                </form>
+                            </li>
+                        </ul>
+                        <hr/>
+                    </nav>
+                </BrowserRouter>
             </header>
         </section>
     )

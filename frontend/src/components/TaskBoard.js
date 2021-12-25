@@ -4,7 +4,6 @@ const TaskItem = ({task}) => {
         <tr>
             <td>{task.id}</td><br />
             <td>{task.task_title}</td><br />
-            <td>{task.task_status}</td><br />
             <td>{task.project}</td><br />
             <td>{task.creator}</td><br />
             <td>{task.task_description}</td><br />
@@ -17,13 +16,10 @@ const TaskBoard = ({tasks}) => {
     return (
         <table>
             <th>
-                Id
+                ID
             </th><br />
             <th>
                 Название
-            </th><br />
-            <th>
-                Статус
             </th><br />
             <th>
                 Проект
@@ -32,12 +28,12 @@ const TaskBoard = ({tasks}) => {
                 Пользователь
             </th><br />
             <th>
-                Текст Задачи
+                Текст задачи
             </th><br />
             <th>
                 Дата создания
             </th><br />
-            {tasks.map((task) => <TaskItem task={task}/> )}
+            {tasks.map((task) => <TaskItem task={task} /> )}
         </table>
     )
 }
