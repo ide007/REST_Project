@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Routes , Route, Navigate, Link} from 'react-router-dom'
+import {BrowserRouter, Routes , Route, Navigate, Link, useLocation} from 'react-router-dom'
 //import MenuList from './components/MenuList.js'
 import UsersList from './components/UsersList.js'
 import TaskBoard from './components/TaskBoard.js'
@@ -9,9 +9,10 @@ import Footer from './components/Footer.js'
 import axios from 'axios'
 
 const NotFound404 = () => {
+    let location = useLocation();
     return (
         <div>
-            <h1>Страница не найдена</h1>
+            <h1>Страница по адресу '{location.pathname}' не найдена.</h1>
         </div>
     )
 }
