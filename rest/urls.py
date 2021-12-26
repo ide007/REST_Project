@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 from taskboardapp.views import WorkProjectViewSet, TaskBoardViewSet
 from usersapp.views import UserViewSet
 #from usersapp.views import UserModelViewSet
@@ -28,6 +29,8 @@ router.register('taskboard', TaskBoardViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', views.obtain_auth_token)
     # path('api/get/', UserViewSet.as_view()),
     # path('api/get/<int:pk>/', UserViewSet.as_view()),
     # path('api/post/', post_view)

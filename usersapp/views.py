@@ -7,6 +7,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from .serializers import UserSerializer
 from .models import User
+from rest_framework.permissions import DjangoModelPermissions
 
 
 class UserViewSet(ListModelMixin,
@@ -15,6 +16,7 @@ class UserViewSet(ListModelMixin,
                   GenericViewSet):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = User.objects.all()
+    permission_classes = [DjangoModelPermissions]
     serializer_class = UserSerializer
 
     def get(self, request, *args, **kwargs):
