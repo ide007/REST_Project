@@ -16,12 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from taskboardapp.views import WorkProjectViewSet, TaskBoardViewSet
 from usersapp.views import UserViewSet
+#from usersapp.views import UserModelViewSet
 
 router = DefaultRouter()
-router.register('user', UserViewSet)
+router.register('users', UserViewSet)
+router.register('project', WorkProjectViewSet)
+router.register('taskboard', TaskBoardViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    # path('api/get/', UserViewSet.as_view()),
+    # path('api/get/<int:pk>/', UserViewSet.as_view()),
+    # path('api/post/', post_view)
 ]
