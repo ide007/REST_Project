@@ -10,8 +10,8 @@ from taskboardapp.serializers import WorkProjectSerializer, TaskBoardSerializer
 from .filters import WorkProjectFilter
 
 
-class ProjectPagination(LimitOffsetPagination):
-    default_limit = 10
+# class ProjectPagination(LimitOffsetPagination):
+#     default_limit = 10
 
 
 class WorkProjectViewSet(ListModelMixin,
@@ -24,7 +24,7 @@ class WorkProjectViewSet(ListModelMixin,
     queryset = WorkProject.objects.all()
     serializer_class = WorkProjectSerializer
     filterset_class = WorkProjectFilter
-    pagination_class = ProjectPagination
+    # pagination_class = ProjectPagination
 
 
 class TaskBoardViewSet(ListModelMixin,
@@ -37,7 +37,7 @@ class TaskBoardViewSet(ListModelMixin,
     queryset = TaskBoard.objects.all()
     serializer_class = TaskBoardSerializer
     filterset_fields = ['project']
-    pagination_class = ProjectPagination
+    # pagination_class = ProjectPagination
 
     def destroy(self, request, *args, **kwargs):
         task = self.get_object()
