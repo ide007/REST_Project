@@ -10,6 +10,13 @@ class UserSerializer(ModelSerializer):
         fields = ['id', 'user_name', 'first_name', 'last_name', 'email']
 
 
+class UserSerializerV2(ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+        # fields = ['id', 'user_name', 'first_name', 'last_name', 'email']
+
+
 # class UserSerializer(Serializer):
 #     id = IntegerField()
 #     user_name = CharField(max_length=32)

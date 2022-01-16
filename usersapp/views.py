@@ -5,7 +5,7 @@ from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, \
     UpdateModelMixin
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserSerializerV2
 from .models import User
 from rest_framework.permissions import DjangoModelPermissions
 
@@ -17,7 +17,12 @@ class UserViewSet(ListModelMixin,
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = User.objects.all()
     permission_classes = [DjangoModelPermissions]
-    serializer_class = UserSerializer
+    # serializer_class = UserSerializer
+
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return UserSerializerV2
+        return UserSerializer
 
     def get(self, request, *args, **kwargs):
         if 'pk' in kwargs:
