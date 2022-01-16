@@ -1,0 +1,21 @@
+{
+	allTasks{
+    taskTitle
+    taskDescription
+    taskStatus
+    project{
+      projectId
+      name
+      repositoryLink
+      projectUser{
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+}
+
+"""
+данный запрос выводит все задачи, с привязкой к проектам и пользователям
+"""

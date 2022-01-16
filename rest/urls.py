@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
+from graphene_django.views import GraphQLView
 from rest_framework.permissions import AllowAny
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from taskboardapp.views import WorkProjectViewSet, TaskBoardViewSet
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
 from usersapp.views import UserViewSet
 #from usersapp.views import UserModelViewSet
 
@@ -39,9 +40,10 @@ urlpatterns = [
     # path('api/get/<int:pk>/', UserViewSet.as_view()),
     # path('api/post/', post_view)
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0)),
-    path('swagger-ui/', TemplateView.as_view(
-        template_name='swagger-ui.html',
-        extra_context={'schema_url': 'openapi-schema'}
-    ), name='swagger-ui'),
+    path('graphql/', GraphQLView.as_view(graphiql=True))
+    # re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0)),
+    # path('swagger-ui/', TemplateView.as_view(
+    #     template_name='swagger-ui.html',
+    #     extra_context={'schema_url': 'openapi-schema'}
+    # ), name='swagger-ui'),
 ]

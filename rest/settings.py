@@ -44,8 +44,13 @@ INSTALLED_APPS = [
     'usersapp',
     'taskboardapp',
     'django_filters',
+    'graphene_django',
     'drf_yasg',
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'usersapp.schema.schema'
+}
 
 AUTH_USER_MODEL = 'usersapp.User'
 
