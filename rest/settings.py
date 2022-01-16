@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'usersapp',
     'taskboardapp',
     'django_filters',
+    'drf_yasg',
 ]
 
 AUTH_USER_MODEL = 'usersapp.User'
@@ -149,15 +150,22 @@ REST_FRAMEWORK = {
     ],
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 100,
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
     # http://127.0.0.1:8000/api/v2/users
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning'
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning'
+    # http://127.0.0.1:8000/api/usersv2
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    # http://v1.somesite.com/api/users/
+    # http://v2.somesite.com/api/users/
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.HostNameVersioning'
+    # http://127.0.0.1:8000/api/users/?version=v2
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning'
 }
-from rest_framework.versioning import URLPathVersioning
+from rest_framework.versioning import QueryParameterVersioning
