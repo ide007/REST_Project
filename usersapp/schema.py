@@ -1,6 +1,5 @@
 import graphene
 from graphene_django import DjangoObjectType
-
 from taskboardapp.models import TaskBoard, WorkProject
 from .models import User
 
@@ -24,6 +23,7 @@ class ProjectType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
+
     all_users = graphene.List(UserType)
 
     all_tasks = graphene.List(TaskBoardType)
@@ -32,11 +32,19 @@ class Query(graphene.ObjectType):
 
     task_by_id = graphene.Field(TaskBoardType, id=graphene.Int(required=True))
 
+    projects_by_name = graphene.Field(ProjectType, name=graphene.String(required=False))
+
     def resolve_task_by_id(root, info, id):
         try:
             return TaskBoard.objects.get(id=id)
         except TaskBoard.DoesNotExist:
             return None
+
+    def resolve_projects_by_name(root, info, name=None):
+        projects = ProjectType.objects.all()
+        if name:
+            projects = projects.filter(name__contains=name)
+        return projects
 
     def resolve_all_users(root, info):
         return User.objects.all()

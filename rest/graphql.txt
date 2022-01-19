@@ -1,5 +1,6 @@
 {
-	allTasks{
+  allTasks{
+    id
     taskTitle
     taskDescription
     taskStatus
@@ -8,14 +9,134 @@
       name
       repositoryLink
       projectUser{
+        id
         firstName
         lastName
         email
       }
     }
   }
+    projectsByName (name: "про") {
+    name
+    projectId
+    projectUser {
+      id
+      firstName
+      lastName
+    }
+  }
 }
 
 """
 данный запрос выводит все задачи, с привязкой к проектам и пользователям
+ответ на запрос ниже
+ругается на функцию 'projects_by_name' не понял что ему не понравилось
 """
+{
+  "errors": [
+    {
+      "message": "type object 'ProjectType' has no attribute 'objects'",
+      "locations": [
+        {
+          "line": 19,
+          "column": 5
+        }
+      ],
+      "path": [
+        "projectsByName"
+      ]
+    }
+  ],
+  "data": {
+    "allTasks": [
+      {
+        "id": "2",
+        "taskTitle": "task_1",
+        "taskDescription": "фацфуаывсц3к",
+        "taskStatus": true,
+        "project": {
+          "projectId": "2",
+          "name": "дом",
+          "repositoryLink": "http://link.test.ru",
+          "projectUser": [
+            {
+              "id": "1",
+              "firstName": "Ivan",
+              "lastName": "Ivanov",
+              "email": "ivanov@email.com"
+            },
+            {
+              "id": "2",
+              "firstName": "Vasiliy",
+              "lastName": "Vasilev",
+              "email": "vasilev@email.com"
+            }
+          ]
+        }
+      },
+      {
+        "id": "4",
+        "taskTitle": "task_5",
+        "taskDescription": "afsdhjmhgfdddfhjmnbvdwertyj",
+        "taskStatus": true,
+        "project": {
+          "projectId": "4",
+          "name": "пром5",
+          "repositoryLink": "http://link5.test5.ru",
+          "projectUser": [
+            {
+              "id": "1",
+              "firstName": "Ivan",
+              "lastName": "Ivanov",
+              "email": "ivanov@email.com"
+            },
+            {
+              "id": "3",
+              "firstName": "admin",
+              "lastName": "ADM",
+              "email": "admin@email.com"
+            },
+            {
+              "id": "5",
+              "firstName": "Пятый",
+              "lastName": "5555",
+              "email": "5555@email.com"
+            }
+          ]
+        }
+      },
+      {
+        "id": "5",
+        "taskTitle": "test",
+        "taskDescription": "test",
+        "taskStatus": false,
+        "project": {
+          "projectId": "4",
+          "name": "пром5",
+          "repositoryLink": "http://link5.test5.ru",
+          "projectUser": [
+            {
+              "id": "1",
+              "firstName": "Ivan",
+              "lastName": "Ivanov",
+              "email": "ivanov@email.com"
+            },
+            {
+              "id": "3",
+              "firstName": "admin",
+              "lastName": "ADM",
+              "email": "admin@email.com"
+            },
+            {
+              "id": "5",
+              "firstName": "Пятый",
+              "lastName": "5555",
+              "email": "5555@email.com"
+            }
+          ]
+        }
+      }
+    ],
+    "projectsByName": null
+  }
+}
