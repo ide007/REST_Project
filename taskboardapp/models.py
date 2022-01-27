@@ -4,7 +4,7 @@ from usersapp.models import User
 
 class WorkProject(models.Model):
     name = models.CharField(verbose_name='Название проекта', max_length=64)
-    repository_link = models.URLField(verbose_name='ссылка на проект', null=True)
+    repository_link = models.URLField(verbose_name='Ссылка на проект', null=True)
     project_id = models.AutoField(primary_key=True)
     project_user = models.ManyToManyField(User, verbose_name='Участники')
 

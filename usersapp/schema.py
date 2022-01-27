@@ -32,7 +32,7 @@ class Query(graphene.ObjectType):
 
     task_by_id = graphene.Field(TaskBoardType, id=graphene.Int(required=True))
 
-    projects_by_name = graphene.Field(ProjectType, name=graphene.String(required=False))
+    projects_by_name = graphene.List(ProjectType, name=graphene.String(required=False))
 
     def resolve_task_by_id(root, info, id):
         try:
@@ -56,4 +56,24 @@ class Query(graphene.ObjectType):
         return WorkProject.objects.all()
 
 
-schema = graphene.Schema(query=Query)
+# class ProjectCreateMutation(graphene.Mutation):
+#     class Arguments:
+#
+#         name = graphene.String(required=False)
+#         repository_link = graphene.String(required=False)
+#         # project_user = Query.resolve_all_users()
+#
+#     project = graphene.Field(ProjectType)
+#
+#     @classmethod
+#     def mutate(cls, root, info, name, repository_link):
+#         project = WorkProject(name=name, repository_link=repository_link)
+#         project.save()
+#         return ProjectCreateMutation(project)
+#
+#
+# class Mutations(graphene.ObjectType):
+#     create_project = ProjectCreateMutation.Field()
+
+
+schema = graphene.Schema(query=Query) #, mutation=Mutations
