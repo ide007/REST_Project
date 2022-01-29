@@ -1,21 +1,30 @@
 import React from 'react'
-import {BrowserRouter, Routes , Route, Navigate, Link} from 'react-router-dom'
+import {BrowserRouter, Route, Routes, Link, Navigate, useLocation} from 'react-router-dom'
 //import MenuList from './components/MenuList.js'
 import UsersList from './components/UsersList.js'
 import TaskBoard from './components/TaskBoard.js'
 import ProjectList from './components/ProjectsList.js'
 import ProjectInfo from './components/ProjectInfo.js'
 import LoginForm from './components/LoginForm.js'
+import ProjectForm from './components/ProjectForm.js'
 import Footer from './components/Footer.js'
 import axios from 'axios'
 
-const NotFound404 = () => {
+
+const NotFound = () => {
+    let location = useLocation()
     return (
-        <div>
-            <h1>Страница не найдена</h1>
-        </div>
+        <div>Page {location.pathname} not found</div>
     )
 }
+
+//const NotFound404 = () => {
+//    return (
+//        <div>
+//            <h1>Страница не найдена</h1>
+//        </div>
+//    )
+//}
 
 class App extends React.Component {
     constructor(prop) {
@@ -72,7 +81,7 @@ class App extends React.Component {
         let headers = this.get_headers()
         axios.get('http://127.0.0.1:8000/api/users/', {headers})
         .then(response => {
-            const users = response.data.results
+            const users = response.data
             this.setState({
                 'users': users
             })
@@ -86,7 +95,7 @@ class App extends React.Component {
 
         axios.get('http://127.0.0.1:8000/api/taskboard/', {headers})
         .then(response => {
-            const tasks = response.data.results
+            const tasks = response.data
             this.setState({
                 'tasks': tasks
             })
@@ -100,7 +109,7 @@ class App extends React.Component {
 
         axios.get('http://127.0.0.1:8000/api/project/', {headers})
         .then(response => {
-            const projects = response.data.results
+            const projects = response.data
             this.setState({
                 'projects': projects
             })
@@ -113,6 +122,36 @@ class App extends React.Component {
         })
     }
 
+    delete_project (id) {
+        let headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/project/${id}`, {headers})
+        .then(response => {
+            const projects = response.data
+            this.setState({
+                'projects': this.state.projects.filter((project) => project.project_id !== id)
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
+    create_project(name, repository_link, users) {
+        let headers = this.get_headers()
+        axios.post('http://127.0.0.1:8000/api/project/', {
+         'name': name,
+         'repository_link': repository_link,
+         'project_user': users
+         }, {headers})
+        .then(response => {
+            this.get_data();
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        console.log(name, repository_link, users)
+    }
+
     render () {
         return (
             <div>
@@ -121,12 +160,13 @@ class App extends React.Component {
                         <nav>
                         <ul>
                             <li><Link to='/'>Проекты</Link> </li>
+                            <li><Link to='/create'>Создать проект</Link> </li>
                             <li><Link to='/taskboard'>Задачи</Link> </li>
                             <li><Link to='/users'>Участники</Link> </li>
                             <li>
-                            {this.is_auth() ?
-                            <button onClick={() => this.logout()}>Выйти</button>:
-                             <Link to='/login'>Войти</Link> }
+                                {this.is_auth() ?
+                                <button onClick={() => this.logout()}>Выйти</button>:
+                                 <Link to='/login'>Войти</Link> }
                             </li>
                             <li>
                                 <form>
@@ -137,13 +177,19 @@ class App extends React.Component {
                         </ul>
                         </nav>
                         <Routes>
-                            <Route exact path='/' element={<ProjectList projects={this.state.projects} />} />
+                            <Route exact path='/' element={<ProjectList projects={this.state.projects}
+                             delete_project={(id) => this.delete_project(id)} />} />
+                            <Route exact path='/create' element={<ProjectForm users={this.state.users}
+                             create_project={(name, repository_link, users) => this.create_project(name, repository_link, users)} />} />
                             <Route exact path='/users' element={<UsersList users={this.state.users} />} />
-                            <Route exact path='/login' element={<LoginForm get_token={(login, password) => this.get_token(login, password)}/>} />
-                            <Route exact path='/taskboard' element={<TaskBoard tasks={this.state.tasks} />} />
+                            <Route exact path='/login' element={<LoginForm
+                             get_token={(login, password) => this.get_token(login, password)}/>} />
+                            <Route exact path='/taskboard' element={<TaskBoard
+                             tasks={this.state.tasks} />} />
                             <Route path='/project' element={<Navigate to='/'/>} />
-                            <Route path='/project/:project_id' element={<ProjectInfo tasks={this.state.tasks} /> } />
-                            <Route path='*' element={<NotFound404 /> } />
+                            <Route path='/project/:project_id' element={<ProjectInfo
+                             tasks={this.state.tasks} /> } />
+                            <Route path="*" element={<NotFound /> } />
                         </Routes>
                     </BrowserRouter>
                 </div>
