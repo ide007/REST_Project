@@ -18,13 +18,6 @@ const NotFound = () => {
     )
 }
 
-//const NotFound404 = () => {
-//    return (
-//        <div>
-//            <h1>Страница не найдена</h1>
-//        </div>
-//    )
-//}
 
 class App extends React.Component {
     constructor(prop) {
@@ -171,7 +164,7 @@ class App extends React.Component {
                             <li>
                                 <form>
                                     <input type='string' />
-                                    <button> Поиск </button>
+                                    <button> Поиск проекта </button>
                                 </form>
                             </li>
                         </ul>
