@@ -14,14 +14,14 @@ class WorkProject(models.Model):
 
 
 class TaskBoard(models.Model):
-    project = models.ForeignKey(WorkProject, on_delete=models.CASCADE)
-    creator = models.ForeignKey(User, on_delete=models.RESTRICT)
-    task_title = models.CharField(max_length=64)
-    task_description = models.TextField()
-    task_status = models.BooleanField(default=True)
-    created_time = models.DateTimeField(auto_now_add=True)
-    updated_time = models.DateTimeField(auto_now=True)
-    is_deleted = models.BooleanField(default=False)
+    project = models.ForeignKey(WorkProject, on_delete=models.CASCADE, verbose_name='Проект')
+    creator = models.ForeignKey(User, on_delete=models.RESTRICT, verbose_name='Ответственный')
+    task_title = models.CharField(max_length=64, verbose_name='Название задачи')
+    task_description = models.TextField(verbose_name='Содержание задачи')
+    task_status = models.BooleanField(default=True, verbose_name='Статус задачи')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_time = models.DateTimeField(auto_now=True, verbose_name='Последнее редактирование')
+    is_deleted = models.BooleanField(default=False, verbose_name='Статус закрытия')
 
     class Meta:
         verbose_name = 'Задача'
