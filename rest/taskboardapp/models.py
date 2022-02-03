@@ -1,5 +1,5 @@
 from django.db import models
-from usersapp.models import User
+from rest.usersapp.models import User
 
 
 class WorkProject(models.Model):

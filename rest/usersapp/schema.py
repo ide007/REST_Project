@@ -1,6 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
-from taskboardapp.models import TaskBoard, WorkProject
+from rest.taskboardapp import TaskBoard, WorkProject
 from .models import User
 
 

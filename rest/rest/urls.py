@@ -1,15 +1,15 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from graphene_django.views import GraphQLView
 from rest_framework.permissions import AllowAny
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
-from taskboardapp.views import WorkProjectViewSet, TaskBoardViewSet
+from rest.taskboardapp.views import WorkProjectViewSet, TaskBoardViewSet
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 # from django.views.generic import TemplateView
-from usersapp.views import UserViewSet
+from rest.usersapp.views import UserViewSet
 #from usersapp.views import UserModelViewSet
 
 schema_view = get_schema_view(

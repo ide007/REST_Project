@@ -1,8 +1,7 @@
-from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIRequestFactory, force_authenticate, APIClient, APITestCase
-from usersapp.views import UserModelViewSet
-from usersapp.models import User
+from rest.usersapp.views import UserModelViewSet
+from rest.usersapp.models import User
 from .models import WorkProject, TaskBoard
 from mixer.backend.django import mixer
 

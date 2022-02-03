@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from taskboardapp.models import WorkProject
+from rest.taskboardapp.models import WorkProject
 
 
 class WorkProjectFilter(filters.FilterSet):

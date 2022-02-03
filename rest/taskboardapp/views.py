@@ -1,12 +1,11 @@
 from rest_framework import status
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, \
     UpdateModelMixin, CreateModelMixin, DestroyModelMixin
-from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from taskboardapp.models import WorkProject, TaskBoard
-from taskboardapp.serializers import WorkProjectSerializer, TaskBoardSerializer
+from rest.taskboardapp.models import WorkProject, TaskBoard
+from rest.taskboardapp.serializers import WorkProjectSerializer, TaskBoardSerializer
 from .filters import WorkProjectFilter
 
 
